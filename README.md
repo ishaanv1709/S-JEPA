@@ -10,11 +10,13 @@ A world model that adapts to physical domains by separating universal physics dy
 
 ## Demo — World Model Playing Angry Birds
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe id="js_video_iframe" src="https://jumpshare.com/embed/lwLctF02mqxMFXVYYT4x" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+[![Watch the S-JEPA demo](assets/sjepa_architecture_clean.png)](https://jumpshare.com/embed/lwLctF02mqxMFXVYYT4x)
 
-▶️ **[Watch the demo](https://jumpshare.com/embed/lwLctF02mqxMFXVYYT4x)**
+**▶ [Click to watch — S-JEPA playing Angry Birds live in Unity](https://jumpshare.com/embed/lwLctF02mqxMFXVYYT4x)**
 
 The trained S-JEPA world model selects shots in real time inside Unity Science Birds — encoding the game state, planning in latent space with a multi-start gradient actor, and executing actions through a WebSocket bridge.
+
+> *To embed the demo inline (auto-playing in the README), download the .mp4 from Jumpshare and drag-drop it into this README on GitHub's web editor — GitHub will host it and replace the link with a `<video>` tag automatically.*
 
 ---
 
@@ -36,7 +38,7 @@ S-JEPA is the structural alternative: **freeze the universal, adapt the local.**
 
 ## Architecture
 
-![S-JEPA Architecture](sjepa_architecture_clean.png)
+![S-JEPA Architecture](assets/sjepa_architecture_clean.png)
 
 **Frozen across domains** (universal physics structure)
 - **Predictor** `P_φ` — geometric rule for how latents shift under action latents
@@ -105,20 +107,32 @@ Same architecture, three different physics regimes.
 │   ├── train_transfer.py     Cross-domain transfer
 │   ├── retrain_improved.py   Full retraining pipeline
 │   └── finetune_*.py         LLM baseline fine-tuning
-├── evaluation/             Metrics and robustness tests
+├── evaluation/             Metrics, robustness tests, baseline evals
+│   ├── evaluate.py
+│   ├── robustness_test.py
+│   ├── eval_baselines_plaid.py
+│   └── eval_baselines_sim.py
 ├── domains/                Domain modules (grasping)
 ├── plaid/                  CFD AirfRANS pipeline
 ├── science_birds/          Unity game client
 ├── llm_baseline/           LLM baseline scripts
+├── scripts/                Run / play / ablation entry points
+│   ├── play_live.py          Run the world model live in Unity
+│   ├── play_llm_*.py         Run frontier-LLM baselines
+│   ├── play_finetuned_*.py   Run fine-tuned LLM baselines
+│   ├── run_ablations.py
+│   ├── run_ablations_live.py
+│   └── retrain_no_sigreg.py
+├── tests/                  Integration tests
+├── results/                JSON result dumps
+├── docs/                   Paper draft, proposal, generators
+│   ├── sjepa_paper.tex
+│   ├── lossfunk_proposal.pdf
+│   └── sjepa_architecture_clean.py
+├── assets/                 Architecture diagram and figures
 ├── configs/                Run configs
-├── play_live.py            Run the world model live in Unity
-├── play_llm_*.py           Run LLM baselines
-├── play_finetuned_*.py     Run fine-tuned LLM baselines
-├── run_ablations.py        Ablation suite
-├── eval_baselines_*.py     Cross-method evaluation
-├── sjepa_paper.tex         Paper draft
-├── sjepa_architecture_clean.png   Architecture diagram
-└── lossfunk_proposal.pdf   Original research proposal
+├── requirements.txt
+└── README.md
 ```
 
 ---
@@ -137,13 +151,13 @@ pip install -r requirements.txt
 2. Press **Play** in Unity (starts WebSocket server at `ws://localhost:9000`)
 3. Run:
    ```bash
-   python play_live.py
+   python scripts/play_live.py
    ```
 
 ### Run the LLM baselines
 ```bash
-python play_llm_base.py            # generic frontier-LLM loop
-python play_finetuned_base.py      # fine-tuned LLM
+python scripts/play_llm_base.py            # generic frontier-LLM loop
+python scripts/play_finetuned_base.py      # fine-tuned LLM
 ```
 
 ### Train from scratch
@@ -160,8 +174,8 @@ python training/train_transfer.py  # freeze predictor + critic, retrain encoders
 
 ### Ablations
 ```bash
-python run_ablations.py
-python run_ablations_live.py
+python scripts/run_ablations.py
+python scripts/run_ablations_live.py
 ```
 
 ---
@@ -201,21 +215,6 @@ This is a geometric rule in latent space, not a physical rule. Same rule whether
 - **Online adaptation** — Streaming encoder updates without offline retraining.
 - **Hierarchical predictors** — Multi-timescale dynamics for long-horizon planning.
 - **LLM-JEPA hybrids** — Language-conditioned world models grounding semantic goals in physics latent space.
-
----
-
-## Citation
-
-If this work informs your own, cite as:
-
-```bibtex
-@misc{verma2026sjepa,
-  title  = {S-JEPA: Symbolic Joint Embedding Predictive Architecture for Cross-Domain Physics},
-  author = {Ishaan Verma},
-  year   = {2026},
-  note   = {https://github.com/ishaanv1709/S-JEPA}
-}
-```
 
 ---
 
