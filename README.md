@@ -82,7 +82,6 @@ Same architecture, three different physics regimes.
 | PyBullet Grasping | **0.992** |
 
 **Cross-domain transfer:**
-- Reconstruction cosine: **0.997**
 - **28% fewer trainable parameters** vs full retrain
 
 **Total model size:** 2.2M parameters - roughly 450× smaller than the 1B LLM baseline that fails on the same task.
