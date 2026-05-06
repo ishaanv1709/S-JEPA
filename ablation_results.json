@@ -1,0 +1,250 @@
+{
+  "1": {
+    "full": {
+      "scores": [
+        100,
+        100,
+        100
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 100,
+      "std": 0,
+      "cleared_pct": 0.0
+    },
+    "no_critic": {
+      "scores": [
+        53,
+        66,
+        79
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 66,
+      "std": 11,
+      "cleared_pct": 0.0
+    },
+    "single_start": {
+      "scores": [
+        100,
+        100,
+        100
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 100,
+      "std": 0,
+      "cleared_pct": 0.0
+    },
+    "no_sigreg": {
+      "scores": [
+        50,
+        50,
+        50
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 50,
+      "std": 0,
+      "cleared_pct": 0.0
+    }
+  },
+  "2": {
+    "full": {
+      "scores": [
+        0,
+        0,
+        0
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 0,
+      "std": 0,
+      "cleared_pct": 0.0
+    },
+    "no_critic": {
+      "scores": [
+        0,
+        0,
+        0
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 0,
+      "std": 0,
+      "cleared_pct": 0.0
+    },
+    "single_start": {
+      "scores": [
+        0,
+        0,
+        0
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 0,
+      "std": 0,
+      "cleared_pct": 0.0
+    },
+    "no_sigreg": {
+      "scores": [
+        0,
+        0,
+        0
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 0,
+      "std": 0,
+      "cleared_pct": 0.0
+    }
+  },
+  "3": {
+    "full": {
+      "scores": [
+        875,
+        875,
+        875
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 875,
+      "std": 0,
+      "cleared_pct": 0.0
+    },
+    "no_critic": {
+      "scores": [
+        728,
+        766,
+        804
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 766,
+      "std": 31,
+      "cleared_pct": 0.0
+    },
+    "single_start": {
+      "scores": [
+        745,
+        758,
+        771
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 758,
+      "std": 11,
+      "cleared_pct": 0.0
+    },
+    "no_sigreg": {
+      "scores": [
+        707,
+        750,
+        793
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 750,
+      "std": 35,
+      "cleared_pct": 0.0
+    }
+  },
+  "4": {
+    "full": {
+      "scores": [
+        453,
+        466,
+        479
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 466,
+      "std": 11,
+      "cleared_pct": 0.0
+    },
+    "no_critic": {
+      "scores": [
+        276,
+        300,
+        324
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 300,
+      "std": 20,
+      "cleared_pct": 0.0
+    },
+    "single_start": {
+      "scores": [
+        470,
+        483,
+        496
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 483,
+      "std": 11,
+      "cleared_pct": 0.0
+    },
+    "no_sigreg": {
+      "scores": [
+        225,
+        225,
+        225
+      ],
+      "cleared": [
+        0,
+        0,
+        0
+      ],
+      "mu": 225,
+      "std": 0,
+      "cleared_pct": 0.0
+    }
+  }
+}

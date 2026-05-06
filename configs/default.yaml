@@ -1,0 +1,74 @@
+game:
+  # Science Birds connection
+  server_host: "127.0.0.1"
+  server_port: 2004
+
+  # State representation
+  max_birds: 5
+  max_blocks: 20
+  max_pigs: 5
+  bird_features: 4      # type_onehot(5->1 idx), x, y, status
+  block_features: 6     # type, material, x, y, rotation, health
+  pig_features: 4        # size, x, y, health
+  slingshot_features: 2  # x, y
+  global_features: 2     # score, birds_remaining
+  # Total state dim: 5*4 + 20*6 + 5*4 + 2 + 2 = 164
+  obs_dim: 164
+  action_dim: 3          # angle, power, tap_time
+
+model:
+  # LeWorldModel (LeWM) architecture
+  # Paper: Maes, Le Lidec, Scieur, LeCun, Balestriero (2026)
+  latent_dim: 256
+  hidden_dim: 512
+  ema_momentum: 0.996
+  loss_type: "lewm"           # LeWM 2-term loss (prediction + SIGReg)
+  sigreg_lambda: 1.0          # THE ONLY hyperparameter in LeWM
+
+training:
+  jepa:
+    epochs: 8
+    batch_size: 1024
+    lr: 0.001
+    weight_decay: 0.0001
+    grad_clip: 1.0
+  decoder:
+    epochs: 30
+    batch_size: 1024
+    lr: 0.001
+    patience: 3
+    lr_factor: 0.5
+  critic:
+    epochs: 20
+    batch_size: 1024
+    lr: 0.0005
+
+actor:
+  optimization_steps: 300
+  num_starts: 10
+  lr: 0.01
+  lr_min: 0.001
+  regularization: 0.01
+
+data:
+  n_episodes: 200        # levels to play
+  shots_per_level: 50    # random shots per level
+  output_path: "data/sciencebirds_data.csv"
+  norm_stats_path: "data/norm_stats.npz"
+
+benchmark:
+  n_levels: 11                # 11 benchmark levels
+  n_runs: 3
+  output_dir: "benchmark/results"
+
+llm:
+  provider: "groq"            # Groq API (free tier, fast inference)
+  models:
+    - name: "llama-3.3-70b"
+      model_id: "llama-3.3-70b-versatile"
+    - name: "llama-3.1-8b"
+      model_id: "llama-3.1-8b-instant"
+    - name: "gemma2-9b"
+      model_id: "gemma2-9b-it"
+    - name: "mixtral-8x7b"
+      model_id: "mixtral-8x7b-32768"

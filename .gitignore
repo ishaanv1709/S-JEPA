@@ -1,0 +1,64 @@
+# Secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Virtual envs
+venv/
+env/
+.venv/
+
+# Large data and checkpoints
+data/
+checkpoints/
+checkpoints_no_sigreg/
+plaid/data/
+plaid/results/
+unsloth_compiled_cache/
+benchmark/
+
+# Logs and runs
+logs/
+wandb/
+runs/
+*.log
+
+# Build artifacts and generated docs
+dashboard/
+docx_build/
+explainer_formulas/
+formula_images/
+paper_figures/
+node_modules/
+*.docx
+
+# Misc generated files
+screenshot_debug.png
+sjepa_architecture.pdf
+sjepa_architecture.png
+sjepa_combined.pdf
+llm_live_*.txt
+SJEPA_Complete_Explainer.docx
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

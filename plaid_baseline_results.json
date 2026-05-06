@@ -1,0 +1,15 @@
+{
+  "SY-JEPA": {
+    "mae": 0.624,
+    "cosine": 0.521,
+    "note": "from checkpoints/plaid_symbolic_jepa.pth"
+  },
+  "Plain MLP Dynamics": {
+    "mae": 0.8138049244880676,
+    "cosine": 0.999969869852066
+  },
+  "C-SWM": {
+    "mae": 0.6259460598230362,
+    "cosine": 0.967944510281086
+  }
+}
