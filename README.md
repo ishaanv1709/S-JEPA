@@ -8,12 +8,12 @@ A world model that adapts to physical domains by separating universal physics dy
 
 ---
 
-## Demo — World Model Playing Angry Birds
+## Demo - World Model Playing Angry Birds
 
 
 https://github.com/user-attachments/assets/adfd817c-1ee7-424a-8436-bd065e77d906
 
-The trained S-JEPA world model selects shots in real time inside Unity Science Birds — encoding the game state, planning in latent space with a multi-start gradient actor, and executing actions through a WebSocket bridge.
+The trained S-JEPA world model selects shots in real time inside Unity Science Birds - encoding the game state, planning in latent space with a multi-start gradient actor, and executing actions through a WebSocket bridge.
 
 ---
 
@@ -21,13 +21,13 @@ The trained S-JEPA world model selects shots in real time inside Unity Science B
 
 LLMs cannot do physics control.
 
-When tested on Angry Birds — frontier models in agentic loops, smaller models adapted to the task — they all collapsed. The same launch angle and power, regardless of state. Bird position, pig position, block configuration — none of it mattered.
+When tested on Angry Birds - frontier models in agentic loops, smaller models adapted to the task - they all collapsed. The same launch angle and power, regardless of state. Bird position, pig position, block configuration - none of it mattered.
 
 Pattern-matching, with zero understanding of the underlying physics.
 
 **This is not a bug. This is what happens when you put physics through an architecture built for language.**
 
-LLMs are statistical. Physics is causal. Their interface is discrete tokens and verbal reasoning — not continuous geometry and gradient-learned dynamics. No amount of scaling fixes this structural mismatch.
+LLMs are statistical. Physics is causal. Their interface is discrete tokens and verbal reasoning - not continuous geometry and gradient-learned dynamics. No amount of scaling fixes this structural mismatch.
 
 S-JEPA is the structural alternative: **freeze the universal, adapt the local.**
 
@@ -38,13 +38,13 @@ S-JEPA is the structural alternative: **freeze the universal, adapt the local.**
 ![S-JEPA Architecture](assets/sjepa_architecture_clean.png)
 
 **Frozen across domains** (universal physics structure)
-- **Predictor** `P_φ` — geometric rule for how latents shift under action latents
-- **Critic** `C_ψ` — energy scoring used at inference for action selection
-- **Latent geometry** — 256D, isotropic Gaussian (enforced by SIGReg)
+- **Predictor** `P_φ` - geometric rule for how latents shift under action latents
+- **Critic** `C_ψ` - energy scoring used at inference for action selection
+- **Latent geometry** - 256D, isotropic Gaussian (enforced by SIGReg)
 
 **Re-trained per domain** (domain-specific perception)
-- **Encoder** `E_θ` — raw state → 256D latent
-- **Action Embedder** `A_θ` — raw action → 32D action latent
+- **Encoder** `E_θ` - raw state → 256D latent
+- **Action Embedder** `A_θ` - raw action → 32D action latent
 
 **Training objective:**
 ```
@@ -62,7 +62,7 @@ L = ‖P_φ(E_θ(x), A_θ(a)) − sg[E_ξ(y)]‖²  +  λ · ‖(1/N)SᵀS − (
 | Domain | State | Action | Physics |
 |---|---|---|---|
 | **Angry Birds** (Science Birds Unity) | Game state vector | `[angle, power]` | Discrete collisions, projectile motion |
-| **PLAID AirfRANS** (CFD) | 5D point cloud (x, y, U_inf, d_surf) | Δ angle of attack | Continuous PDE — Navier-Stokes |
+| **PLAID AirfRANS** (CFD) | 5D point cloud (x, y, U_inf, d_surf) | Δ angle of attack | Continuous PDE - Navier-Stokes |
 | **PyBullet Grasping** | 32D arm + force state | 7D joint torques | Contact mechanics, friction |
 
 Same architecture, three different physics regimes.
@@ -85,7 +85,7 @@ Same architecture, three different physics regimes.
 - Reconstruction cosine: **0.997**
 - **28% fewer trainable parameters** vs full retrain
 
-**Total model size:** 2.2M parameters — roughly 450× smaller than the 1B LLM baseline that fails on the same task.
+**Total model size:** 2.2M parameters - roughly 450× smaller than the 1B LLM baseline that fails on the same task.
 
 ---
 
@@ -177,13 +177,13 @@ python scripts/run_ablations_live.py
 
 ---
 
-## Why the Predictor Is Frozen — The Chess Coach Analogy
+## Why the Predictor Is Frozen - The Chess Coach Analogy
 
 A chess coach watches players move pieces and predicts the next move. The coach doesn't care if you're playing on a wooden board, a digital board, or a 3D hologram. The coach only sees the abstract chess position.
 
 The board (the encoder) translates the physical setup into the abstract chess representation. The coach (the predictor) operates on that abstraction.
 
-If you switch from wooden boards to digital boards, **you don't retrain the coach.** You give the coach the same abstract chess positions — just generated differently.
+If you switch from wooden boards to digital boards, **you don't retrain the coach.** You give the coach the same abstract chess positions - just generated differently.
 
 The S-JEPA predictor learned a geometric rule:
 > *When this kind of latent receives this kind of action latent, it shifts to that kind of latent.*
@@ -200,7 +200,7 @@ This is a geometric rule in latent space, not a physical rule. Same rule whether
 |---|---|
 | What is "understanding" a domain? | Causal geometry in latent space, measured by Spearman ρ between critic energy and ground-truth quality. |
 | What stays in weights vs assembled at inference? | Universal dynamics in frozen weights; domain-specific perception in adapter modules. |
-| How to prevent catastrophic forgetting? | Parameter isolation by architectural design — frozen weights cannot drift. |
+| How to prevent catastrophic forgetting? | Parameter isolation by architectural design - frozen weights cannot drift. |
 | Parametric vs non-parametric? | Parametric core + non-parametric extensions for edge cases (retrieval, calibration). |
 | Learning in constrained compute? | ~500K trainable parameters per new domain; laptop-GPU scale. |
 
@@ -208,10 +208,10 @@ This is a geometric rule in latent space, not a physical rule. Same rule whether
 
 ## Future Work
 
-- **T-JEPA** — Topological JEPA using persistent homology (Betti numbers) for cardinality-invariant scenes (variable object counts, particle systems, granular media).
-- **Online adaptation** — Streaming encoder updates without offline retraining.
-- **Hierarchical predictors** — Multi-timescale dynamics for long-horizon planning.
-- **LLM-JEPA hybrids** — Language-conditioned world models grounding semantic goals in physics latent space.
+- **T-JEPA** - Topological JEPA using persistent homology (Betti numbers) for cardinality-invariant scenes (variable object counts, particle systems, granular media).
+- **Online adaptation** - Streaming encoder updates without offline retraining.
+- **Hierarchical predictors** - Multi-timescale dynamics for long-horizon planning.
+- **LLM-JEPA hybrids** - Language-conditioned world models grounding semantic goals in physics latent space.
 
 ---
 
