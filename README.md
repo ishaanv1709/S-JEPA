@@ -10,7 +10,9 @@ A world model that adapts to physical domains by separating universal physics dy
 
 ## Demo — World Model Playing Angry Birds
 
-https://www.image2url.com/r2/default/videos/1778074348671-d0063e66-6b59-49b8-9474-e402b11859ad.mp4
+<video src="https://www.image2url.com/r2/default/videos/1778074348671-d0063e66-6b59-49b8-9474-e402b11859ad.mp4" controls width="100%" muted></video>
+
+▶ [Open video in a new tab](https://www.image2url.com/r2/default/videos/1778074348671-d0063e66-6b59-49b8-9474-e402b11859ad.mp4)
 
 The trained S-JEPA world model selects shots in real time inside Unity Science Birds — encoding the game state, planning in latent space with a multi-start gradient actor, and executing actions through a WebSocket bridge.
 
